@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Unlock</title>
+<meta charset="UTF-8">
+<link rel="shortcut icon" href="https://tse4.mm.bing.net/th/id/OIP.xbY0f7vMbzWiVhFE1T-SewHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" type="image/x-icon">
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: radial-gradient(circle at top, #2a2573, #130f40);
+        height: 100vh;
+        color: white;
+        text-align: center;
+        font-family: Arial;
+        overflow: hidden;
+    }
+
+    h1 {
+        margin-top: 80px;
+        font-size: 40px;
+    }
+
+    input {
+        padding: 12px;
+        width: 220px;
+        font-size: 18px;
+        border-radius: 10px;
+        border: none;
+        text-align: center;
+        outline: none;
+        box-shadow: 0 0 15px #ff6ec7;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        background: #ff6ec7;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 10px;
+        box-shadow: 0 0 20px #ff6ec7;
+    }
+
+    button:hover {
+        background: #ff3fa6;
+    }
+
+    /* ❤️ ANIMATION */
+    .heart {
+        position: fixed;
+        top: -20px;
+        font-size: 25px;
+        animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(0) }
+        100% { transform: translateY(100vh) }
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🔒 Enter Password to Unlock</h1>
+
+<input id="pass" type="password" placeholder="Enter Password"><br>
+<button onclick="unlock()">Unlock</button>
+
+<!-- Music (will play only after unlock) -->
+<audio id="unlockMusic" src="kya_khub_lagti_ho.mp3"></audio>
+
+<script>
+function unlock() {
+    let p = document.getElementById("pass").value;
+
+    if (p === "1234") {   // Your password
+        let music = document.getElementById("unlockMusic");
+        music.play();    // MUSIC START HERE
+
+        // Save music playing status
+        localStorage.setItem("music_play", "yes");
+
+        // After 1 second go to website
+        setTimeout(() => {
+            window.location.href = "personal2.html";
+        }, 1000);
+
+    } else {
+        alert("❌ Wrong Password!");
+    }
+}
+
+/* ❤️ Fall Animation */
+function dropHeart() {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * window.innerWidth + "px";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 5000);
+}
+setInterval(dropHeart, 300);
+</script>
+
+</body>
+</html>
